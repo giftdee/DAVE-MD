@@ -1,38 +1,38 @@
-const fs = require('fs')
+const fs = require('fs-extra')
 const chalk = require('chalk')
 const path = require('path')
+const { Sequelize, DataTypes } = require('sequelize')
 
 // Load env
-if (fs.existsSync('.env')) require('dotenv').config({ path: __dirname+'/.env' })
+if (fs.existsSync('.env')) require('dotenv').config({ path: path.join(__dirname, '.env') })
 
-// 🔹 Path for db.json
-const dbPath = path.join(__dirname, 'db.json')
+// 🔹 Setup database
+const databasePath = path.join(__dirname, 'database.db')
+const DATABASE_URL = process.env.DATABASE_URL || `sqlite:${databasePath}`
+const sequelize = new Sequelize(DATABASE_URL, { logging: false })
 
-// 🔹 Default structure
-const defaultData = {
-  autoRecording: false,
-  autoTyping: false,
-  autorecordtype: false,
-  autoread: false,
-  autobio: true,
-  anti92: false,
-  owneroff: false,
-  statusview: true
+// 🔹 Define Settings model
+const Setting = sequelize.define('Setting', {
+  key: { type: DataTypes.STRING, unique: true },
+  value: { type: DataTypes.TEXT }
+})
+
+// 🔹 Initialize database
+async function initDB() {
+  await sequelize.sync()
+}
+initDB()
+
+// 🔹 Helper functions
+global.setSetting = async (key, value) => {
+  await Setting.upsert({ key, value: JSON.stringify(value) })
+  global[key] = value
 }
 
-// 🔹 Load db.json (or create if missing)
-let db = defaultData
-if (fs.existsSync(dbPath)) {
-  try {
-    db = JSON.parse(fs.readFileSync(dbPath))
-  } catch (e) {
-    console.log(chalk.red("⚠️ Failed to read db.json, using defaults"))
-  }
-}
-
-// 🔹 Save function
-global.saveDB = () => {
-  fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
+global.getSetting = async (key, defaultValue) => {
+  const row = await Setting.findOne({ where: { key } })
+  if (row) return JSON.parse(row.value)
+  return defaultValue
 }
 
 //~~~~~~~~~~~ Settings Owner ~~~~~~~~~~~//
@@ -52,16 +52,19 @@ global.linkyt = "https://www.youtube.com/Davke"
 global.linktt = "https://tiktok.com"
 global.linktele = "https://t.me"
 
-//~~~~~~~~~~~ Settings Bot (dynamic from db.json) ~~~~~~~~~~~//
-global.prefix = process.env.BOT_PREFIX ||'.'
-global.autoRecording = db.autoRecording
-global.autoTyping = db.autoTyping
-global.autorecordtype = db.autorecordtype
-global.autoread = process.env.AUTO_READ || db.autoread
-global.autobio = db.autobio
-global.anti92 = db.anti92
-global.owneroff = db.owneroff
-global.statusview = process.env.AUTO_STATUS || db.statusview
+//~~~~~~~~~~~ Settings Bot (dynamic from DB) ~~~~~~~~~~~//
+async function loadBotSettings() {
+  global.prefix = process.env.BOT_PREFIX || '.'
+  global.autoRecording = await getSetting('autoRecording', false)
+  global.autoTyping = await getSetting('autoTyping', false)
+  global.autorecordtype = await getSetting('autorecordtype', false)
+  global.autoread = await getSetting('autoread', false)
+  global.autobio = await getSetting('autobio', true)
+  global.anti92 = await getSetting('anti92', false)
+  global.owneroff = await getSetting('owneroff', false)
+  global.statusview = await getSetting('statusview', true)
+}
+loadBotSettings()
 
 //~~~~~~~~~~~ Settings Thumbnail ~~~~~~~~~~~//
 global.thumbbot = "https://files.catbox.moe/lidsgj.jpg"
