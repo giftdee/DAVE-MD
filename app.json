@@ -1,12 +1,12 @@
 {
-    "name": "Dave-XMd",
-    "description": "A whatsApp bot based on Baileysjs linrary (Ts+Js) with Multi Device support",
-    "repository": "https://github.com/anonphoenix007/CH13",
-    "logo": "https://telegra.ph/file/7aa528767ed96ddc17bc2.jpg",
-    "keywords": ["nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
-    "env": {
+  "name": "Dave-XMd",
+  "description": "A WhatsApp bot based on Baileysjs library (Ts+Js) with Multi Device support",
+  "repository": "https://github.com/anonphoenix007/CH13",
+  "logo": "https://telegra.ph/file/7aa528767ed96ddc17bc2.jpg",
+  "keywords": ["nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
+  "env": {
     "OWNER_NAME": {
-      "description": "enter your owner name here",
+      "description": "Enter your owner name here",
       "value": "Gifted Dave",
       "required": false
     },
@@ -15,31 +15,42 @@
       "value": ".",
       "required": false
     },
-   "AUTO_STATUS": {
-      "description": "type true if you want bot to view status if else type false",
+    "AUTO_STATUS": {
+      "description": "Type true if you want bot to view status else false",
       "value": "true",
       "required": false
     },
-  "AUTO_READ": {
-      "description": "type true if you want bot to read incoming messages if else type false",
+    "AUTO_READ": {
+      "description": "Type true if you want bot to read incoming messages else false",
       "value": "true",
       "required": false
     },
     "SESSION_ID": {
-      "description": "put your session ID here",
+      "description": "Put your session ID here",
       "value": "DAVE-XMD-WHATSAPP-BOT;;;=>",
       "required": true
     }
-    },
-    "buildpacks": [
-      {
-        "url": "heroku/nodejs"
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
     },
     {
       "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
     },
     {
       "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
-          }
-     ]
-} 
+    }
+  ],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "standard-2x"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0"
+    }
+  ]
+}
