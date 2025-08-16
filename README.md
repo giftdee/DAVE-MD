@@ -114,15 +114,10 @@ Choose your hosting service:
 
 ---
 
-## 📜 License
+** Reminder
 
-This project is licensed under the [MIT License](./LICENSE).
-
-> ⚠️ **Conditions of Use**:
-> - Visible credits to the original author **DAVE-MD by giftdee** must remain in both source code and bot output.  
-> - **Rebranding, removing credits, or redistributing** without permission is **not allowed**.  
-> - You may modify and use the bot, but must keep attribution intact and not mislead others about authorship.  
-
-Violation of these terms may result in takedown actions or license revocation.
-
----
+**Disclaimer: This bot is not affiliated with WhatsApp Inc.. Use it at your own risk.
+Misusing the bot may result in your WhatsApp account being banned. Note that you can only unban your account once.
+I am not responsible for any bans or misuse of the bot. Please keep this warning in mind before proceeding.
+**ℹ️ Notice
+Not For Sale - If any plugin's code is obfuscated, you do not have permission to edit it in any form. Please remember to give credit if you are using or re-uploading my plugins/files. Wishing you a wonderful day ahead!
