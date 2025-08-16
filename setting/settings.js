@@ -3,14 +3,16 @@ const chalk = require('chalk')
 const path = require('path')
 const { Sequelize, DataTypes } = require('sequelize')
 
-// Load env
+// Load .env if exists
 if (fs.existsSync('.env')) require('dotenv').config({ path: path.join(__dirname, '.env') })
 
-// 🔹 Setup Sequelize with Heroku Postgres fallback
-let DATABASE_URL = process.env.DATABASE_URL
+// 🔹 Ensure DATABASE_URL exists
+const DATABASE_URL = process.env.DATABASE_URL
 if (!DATABASE_URL) {
-  DATABASE_URL = 'sqlite:' + path.join(__dirname, 'database.db')
+  throw new Error('DATABASE_URL is missing! Attach a Heroku Postgres addon and set DATABASE_URL.')
 }
+
+// 🔹 Setup Sequelize with Heroku Postgres
 const sequelize = new Sequelize(DATABASE_URL, { logging: false })
 
 // 🔹 Define Settings model
@@ -23,8 +25,9 @@ const Setting = sequelize.define('Setting', {
 async function initDB() {
   try {
     await sequelize.sync()
+    console.log(chalk.greenBright('✅ Database connected!'))
   } catch (e) {
-    console.log(chalk.redBright('⚠️ Database init failed, falling back to defaults'))
+    console.log(chalk.redBright('⚠️ Database init failed:'), e)
   }
 }
 initDB()
@@ -78,7 +81,7 @@ async function loadBotSettings() {
   global.statusview = await getSetting('statusview', true)
 }
 
-// 🔹 Make sure settings load before bot starts
+// 🔹 Ensure settings are loaded before bot starts
 global.botReady = loadBotSettings()
 
 //~~~~~~~~~~~ Settings Thumbnail ~~~~~~~~~~~//
