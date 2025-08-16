@@ -59,8 +59,11 @@ Click below to fork **DAVE-MD** to your GitHub:
 
 ### 🔹 Step 2: Pair Your WhatsApp  
 
-Generate a **pairing code** from any site below:
+Generate a **pairing code for heroku and katubump**
 
+[![PAIR DAVE-XMD — Server 1](https://img.shields.io/badge/PAIR%20CODE%20SERVER%201-DAVE--XMD-blue?style=for-the-badge)](https://cypherxdomini-93c190b43dce.herokuapp.com/)  
+
+### 💠 **Creds for katubump etc**
 <div align="center">
 
 [![Site 1](https://img.shields.io/badge/Pair%20Now-Site%201-blue?style=for-the-badge&logo=linktree)](https://source-codes-5tm6.onrender.com/)  
