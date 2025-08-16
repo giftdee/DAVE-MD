@@ -65,8 +65,7 @@ Generate a **pairing code for heroku and katubump**
 
 ### 💠 **Creds for katubump etc**
 <div align="center">
-
-[![Site 1](https://img.shields.io/badge/Pair%20Now-Site%201-blue?style=for-the-badge&logo=linktree)](https://source-codes-5tm6.onrender.com/)  
+ 
 [![Site 2](https://img.shields.io/badge/Pair%20Now-Site%202-darkblue?style=for-the-badge&logo=linktree)](https://davepairing.onrender.com/)  
 [![Site 3](https://img.shields.io/badge/Pair%20Now-Site%203-purple?style=for-the-badge&logo=linktree)](https://giveawaygifted-2a6a0e3932ac.herokuapp.com/)
 
