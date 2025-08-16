@@ -14,7 +14,7 @@ const defaultData = {
   autoTyping: false,
   autorecordtype: false,
   autoread: false,
-  autobio: false,
+  autobio: true,
   anti92: false,
   owneroff: false,
   statusview: true
