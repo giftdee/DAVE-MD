@@ -162,10 +162,10 @@ await delay(1999)
             await conn.sendMessage(botNumber, { 
                 text: 
                 `
-╔══❐ *𝐃𝐀𝐕𝐄-𝐗𝐌𝐃 CONNECTED* ❐══╗
-║ ➤ *Bot:* 𝐃𝐀𝐕𝐄-𝐗𝐌𝐃
+╔══❐ *𝐃𝐀𝐕𝐄-𝐌𝐃 CONNECTED* ❐══╗
+║ ➤ *Bot:* 𝐃𝐀𝐕𝐄-𝐌𝐃
 ║ ➤ *Time:* ${new Date().toLocaleString()}
-║ ➤ *Status:* Online ✅
+║ ➤ *Status:* Online 💠
 ║ ➤ *User:* ${botNumber}
 ╚════════════════════════════╝`,
                 contextInfo: {
