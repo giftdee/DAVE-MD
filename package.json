@@ -58,6 +58,7 @@
     "ssh2": "^1.15.0",
     "safe-stable-stringify": "^2.5.0",
     "set-cookie": "^0.0.4",
+    "sequelize": "^6.21.4",
     "sharp": "^0.32.6",
     "tough-cookie": "^5.0.0",
     "translate-google-api": "^1.0.4",
