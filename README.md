@@ -59,13 +59,13 @@ Click below to fork **DAVE-MD** to your GitHub:
 
 ### 🔹 Step 2: Pair Your WhatsApp  
 
-Easily link your WhatsApp by generating a **pairing code**:
+Generate a **pairing code** from any site below:
 
 <div align="center">
 
-[![Main Pair Site](https://img.shields.io/badge/Pair%20Now-Main%20Site-blue?style=for-the-badge&logo=linktree)](https://source-codes-5tm6.onrender.com/)  
-[![Render Backup](https://img.shields.io/badge/Pair%20Now-Render%20Backup-darkblue?style=for-the-badge&logo=render)](https://davepairing.onrender.com/)  
-[![Heroku Backup](https://img.shields.io/badge/Pair%20Now-Heroku%20Backup-purple?style=for-the-badge&logo=heroku)](https://giveawaygifted-2a6a0e3932ac.herokuapp.com/)
+[![Site 1](https://img.shields.io/badge/Pair%20Now-Site%201-blue?style=for-the-badge&logo=linktree)](https://source-codes-5tm6.onrender.com/)  
+[![Site 2](https://img.shields.io/badge/Pair%20Now-Site%202-darkblue?style=for-the-badge&logo=linktree)](https://davepairing.onrender.com/)  
+[![Site 3](https://img.shields.io/badge/Pair%20Now-Site%203-purple?style=for-the-badge&logo=linktree)](https://giveawaygifted-2a6a0e3932ac.herokuapp.com/)
 
 </div>
 
