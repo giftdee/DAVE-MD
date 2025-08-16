@@ -7,7 +7,10 @@ const { Sequelize, DataTypes } = require('sequelize')
 if (fs.existsSync('.env')) require('dotenv').config({ path: path.join(__dirname, '.env') })
 
 // 🔹 Setup Sequelize with Heroku Postgres fallback
-const DATABASE_URL = process.env.DATABASE_URL || 'sqlite:' + path.join(__dirname, 'database.db')
+let DATABASE_URL = process.env.DATABASE_URL
+if (!DATABASE_URL) {
+  DATABASE_URL = 'sqlite:' + path.join(__dirname, 'database.db')
+}
 const sequelize = new Sequelize(DATABASE_URL, { logging: false })
 
 // 🔹 Define Settings model
@@ -18,19 +21,31 @@ const Setting = sequelize.define('Setting', {
 
 // 🔹 Initialize database
 async function initDB() {
-  await sequelize.sync()
+  try {
+    await sequelize.sync()
+  } catch (e) {
+    console.log(chalk.redBright('⚠️ Database init failed, falling back to defaults'))
+  }
 }
 initDB()
 
 // 🔹 Helper functions
 global.setSetting = async (key, value) => {
-  await Setting.upsert({ key, value: JSON.stringify(value) })
-  global[key] = value
+  try {
+    await Setting.upsert({ key, value: JSON.stringify(value) })
+    global[key] = value
+  } catch (e) {
+    console.log(chalk.redBright(`Failed to save setting "${key}"`))
+  }
 }
 
 global.getSetting = async (key, defaultValue) => {
-  const row = await Setting.findOne({ where: { key } })
-  return row ? JSON.parse(row.value) : defaultValue
+  try {
+    const row = await Setting.findOne({ where: { key } })
+    return row ? JSON.parse(row.value) : defaultValue
+  } catch {
+    return defaultValue
+  }
 }
 
 //~~~~~~~~~~~ Settings Owner ~~~~~~~~~~~//
@@ -62,7 +77,9 @@ async function loadBotSettings() {
   global.owneroff = await getSetting('owneroff', false)
   global.statusview = await getSetting('statusview', true)
 }
-loadBotSettings()
+
+// 🔹 Make sure settings load before bot starts
+global.botReady = loadBotSettings()
 
 //~~~~~~~~~~~ Settings Thumbnail ~~~~~~~~~~~//
 global.thumbbot = "https://files.catbox.moe/lidsgj.jpg"
