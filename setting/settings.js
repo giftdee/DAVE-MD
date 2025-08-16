@@ -6,9 +6,8 @@ const { Sequelize, DataTypes } = require('sequelize')
 // Load env
 if (fs.existsSync('.env')) require('dotenv').config({ path: path.join(__dirname, '.env') })
 
-// 🔹 Setup database
-const databasePath = path.join(__dirname, 'database.db')
-const DATABASE_URL = process.env.DATABASE_URL || `sqlite:${databasePath}`
+// 🔹 Setup Sequelize with Heroku Postgres fallback
+const DATABASE_URL = process.env.DATABASE_URL || 'sqlite:' + path.join(__dirname, 'database.db')
 const sequelize = new Sequelize(DATABASE_URL, { logging: false })
 
 // 🔹 Define Settings model
@@ -31,8 +30,7 @@ global.setSetting = async (key, value) => {
 
 global.getSetting = async (key, defaultValue) => {
   const row = await Setting.findOne({ where: { key } })
-  if (row) return JSON.parse(row.value)
-  return defaultValue
+  return row ? JSON.parse(row.value) : defaultValue
 }
 
 //~~~~~~~~~~~ Settings Owner ~~~~~~~~~~~//
@@ -41,7 +39,7 @@ global.owner = "254104260236"
 global.developer = "254104260236"
 global.bot = ""
 global.devname = "Dave"
-global.ownername = process.env.OWNER_NAME ||'Gifted Dave'
+global.ownername = process.env.OWNER_NAME || 'Gifted Dave'
 global.botname = "𝐃𝐀𝐕𝐄-𝐗𝐌𝐃"
 global.versisc = "2"
 global.packname = "𝐃𝐀𝐕𝐄-𝐗𝐌𝐃"
