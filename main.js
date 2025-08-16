@@ -99,8 +99,8 @@ const videoCommand = require('./commands/video');
 // Global settings
 global.packname = settings.packname;
 global.author = settings.author;
-global.channelLink = "https://whatsapp.com/channel/0029Va90zAnIHphOuO8Msp3A";
-global.ytch = "supremLord";
+global.channelLink ="https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k";
+global.ytch = "Gifted Dave";
 
 // Add this near the top of main.js with other global configurations
 const channelInfo = {
@@ -108,8 +108,8 @@ const channelInfo = {
         forwardingScore: 1,
         isForwarded: false,
         forwardedNewsletterMessageInfo: {
-            newsletterJid: '@newsletter',
-            newsletterName: '𝐉ᴜɴᴇ 𝐌ᴅ',
+            newsletterJid: '120363400480173280@newsletter',
+            newsletterName: '𝐃𝐀𝐕𝐄-𝐗𝐌𝐃',
             serverMessageId: -1
         }
     }
@@ -163,7 +163,7 @@ async function handleMessages(sock, messageUpdate, printLog) {
             // Only respond occasionally to avoid spam
             if (Math.random() < 0.1) {
                 await sock.sendMessage(chatId, {
-                    text: '❌ You are banned from using the bot. Contact an admin to get unbanned.',
+                    text: '😂 You are banned from using the bot. Contact an admin to get unbanned.',
                     ...channelInfo
                 });
             }
@@ -248,7 +248,7 @@ async function handleMessages(sock, messageUpdate, printLog) {
             // Check if message is from owner (fromMe) or bot itself
             if (!message.key.fromMe) {
                 await sock.sendMessage(chatId, {
-                    text: '❌ This command is only available for the owner!',
+                    text: '💠command is reser6 for owner!',
                     ...channelInfo
                 });
                 return;
@@ -781,7 +781,7 @@ async function handleMessages(sock, messageUpdate, printLog) {
 
                     if (!groupJid.endsWith('@g.us')) {
                         return await sock.sendMessage(chatId, {
-                            text: "❌ This command can only be used in a group."
+                            text: "😂 This command can only be used in a group."
                         });
                     }
 
@@ -871,8 +871,8 @@ async function handleGroupParticipantUpdate(sock, update) {
                         forwardingScore: 1,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterJid: channelId,
-                            newsletterName: 'June MD',
+                            newsletterJid: '120363400480173280@newsletter',
+                            newsletterName: '𝐃𝐀𝐕𝐄-𝐗𝐌𝐃',
                             serverMessageId: -1
                         }
                     }
@@ -909,8 +909,8 @@ async function handleGroupParticipantUpdate(sock, update) {
                         forwardingScore: 1,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterJid: channelId,
-                            newsletterName: 'June MD',
+                            newsletterJid: '120363400480173280@newsletter',
+                            newsletterName: '𝐃𝐀𝐕𝐄-𝐗𝐌𝐃',
                             serverMessageId: -1
                         }
                     }
