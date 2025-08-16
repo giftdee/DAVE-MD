@@ -22,7 +22,7 @@ global.linktele = "https://t.me"
 //~~~~~~~~~~~ Settings Bot ~~~~~~~~~~~//
 global.prefix = process.env.BOT_PREFIX ||'.'
 global.autoRecording = false
-global.autoTyping = true
+global.autoTyping = false
 global.autorecordtype = false
 global.autoread = process.env.AUTO_READ || false
 global.autobio = false
