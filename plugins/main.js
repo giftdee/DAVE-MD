@@ -1,6 +1,6 @@
-const config = require('../config')
+const config = require('../config');
 const { davlo, commands } = require('../davlo');
-const {runtime} = require('../lib/functions')
+const { runtime } = require('../lib/functions');
 
 // --- CONFIGURATION ---
 const MENU_IMAGES = [
@@ -11,19 +11,13 @@ const MENU_IMAGES = [
     'https://files.catbox.moe/etqc8k.jpg'
 ];
 
-const quotedContact = {
-  key: {
-    fromMe: false,
-    participant: "0@s.whatsapp.net",
-    remoteJid: "status@broadcast"
-  },
-  message: {
-    contactMessage: {
-      displayName: "Menu-Frame | Verified ✅",
-      vcard: "BEGIN:VCARD\nVERSION:3.0\nFN:𝐃𝐀𝐕𝐄-𝐌𝐃 BOT\nORG:DAVE-MD;\nTEL;type=CELL;type=VOICE;waid=2541111687009:+254111687009\nEND:VCARD"
-    }
-  }
-};
+const MENU_AUDIO_URLS = [
+    'https://files.catbox.moe/ddmjyy.mp3',
+    'https://files.catbox.moe/mexjrq.mp3',
+    'https://files.catbox.moe/4yqp5m.mp3',
+    'https://files.catbox.moe/k41qij.mp3'
+];
+
 const LOADING_MESSAGES = [
     "Initializing connection...",
     "Establishing Bot commands...",
@@ -48,12 +42,24 @@ const LOADING_MESSAGES = [
     "Welcome, user..."
 ];
 
-const MENU_AUDIO_URLS = [
-    'https://files.catbox.moe/ddmjyy.mp3',
-    'https://files.catbox.moe/mexjrq.mp3',
-    'https://files.catbox.moe/4yqp5m.mp3',
-    'https://files.catbox.moe/k41qij.mp3'
-];
+const quotedContact = {
+    key: {
+        fromMe: false,
+        participant: "0@s.whatsapp.net",
+        remoteJid: "status@broadcast"
+    },
+    message: {
+        contactMessage: {
+            displayName: "Menu-Frame | Verified ✅",
+            vcard: `BEGIN:VCARD
+VERSION:3.0
+FN:𝐃𝐀𝐕𝐄-𝐌𝐃 BOT
+ORG:DAVE-MD;
+TEL;type=CELL;type=VOICE;waid=2541111687009:+254111687009
+END:VCARD`
+        }
+    }
+};
 
 // --- DAVLO COMMAND ---
 davlo({
@@ -370,30 +376,31 @@ davlo({
 
 > ${config.DESCRIPTION}`;
 
-      // Send menu image
-await dave.sendMessage(from, {
-    image: { url: selectedImageUrl },
-    caption: menuCaption,
-    contextInfo: {
-        mentionedJid: [m.sender],
-        forwardingScore: 999,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363400480173280@newsletter',
-            newsletterName: config.BOT_NAME,
-            serverMessageId: 143
-        }
+        // Send menu image
+        await dave.sendMessage(from, {
+            image: { url: selectedImageUrl },
+            caption: menuCaption,
+            contextInfo: {
+                mentionedJid: m?.sender ? [m.sender] : [],
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363400480173280@newsletter',
+                    newsletterName: config.BOT_NAME,
+                    serverMessageId: 143
+                }
+            }
+        }, { quoted: quotedContact });
+
+        // Send menu audio
+        await dave.sendMessage(from, {
+            audio: { url: selectedAudioUrl },
+            mimetype: 'audio/mp4',
+            ptt: true
+        }, { quoted: quotedContact });
+
+    } catch (e) {
+        console.error("Menu Command Error:", e);
+        reply(`❌ An error occurred while displaying the menu. Please try again later.`);
     }
-}, { quoted: quotedContact });
-
-// Send menu audio
-await dave.sendMessage(from, {
-    audio: { url: selectedAudioUrl },
-    mimetype: 'audio/mp4',
-    ptt: true
-}, { quoted: quotedContact });
-
-} catch (e) {
-    console.error("Menu Command Error:", e);
-    reply(`❌ An error occurred while displaying the menu. Please try again later.`);
-}
+});
