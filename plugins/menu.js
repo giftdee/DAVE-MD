@@ -1,4 +1,4 @@
-const config = require('../config');
+*/const config = require('../config');
 const { davlo, commands } = require('../davlo');
 const os = require("os");
 const { runtime } = require('../lib/functions');
@@ -429,4 +429,4 @@ ${divider(30)}
   } catch (e) {
     reply(`❌ Error: ${e.message}`);
   }
-});
+});/*
