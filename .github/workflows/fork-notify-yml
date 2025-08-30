@@ -1,0 +1,31 @@
+name: Notify Forks to Update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify-forks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Notify forks
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          issue-number: 1
+          body: |
+            💚 Hi fork owner! Your fork may be outdated.
+            To sync with the main repo, run:
+
+            ```bash
+            git remote add upstream https://github.com/giftdee/DAVE-MD.git
+            git fetch upstream
+            git checkout main
+            git merge upstream/main
+            git push origin main
+            ```
