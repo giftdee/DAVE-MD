@@ -110,7 +110,7 @@ console.log("Session downloaded ✅")
   console.log('Plugins installed successful ✅')
   console.log('Bot connected to whatsapp ✅')
   
-  let up = `*Hello there ✦ 𝐃𝐀𝐕𝐄-𝐌𝐃 User! \ud83d\udc4b\ud83c\udffb* \n\n> This is a user-friendly WhatsApp bot created by Silva Tech Inc \ud83c\udf8a, Meet ✦ 𝐃𝐀𝐕𝐄-𝐌𝐃 WhatsApp Bot.\n\n *Thanks for using ✦ 𝐃𝐀𝐕𝐄-𝐌𝐃 \ud83d\udea9* \n\n> follow WhatsApp Channel :- 💖\n \nhttps://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k\n\n- *YOUR PREFIX:* = ${prefix}\n\nDont forget to give star to repo ⬇️\n\nhttps://github.com/giftdee/DAVE-MD\n\n> © Powered BY ✦ 𝐃𝐀𝐕𝐄-𝐌𝐃 \ud83d\udda4`;
+  let up = `*Hello there ✦ 𝐃𝐀𝐕𝐄-𝐌𝐃 User! \ud83d\udc4b\ud83c\udffb* \n\n> This is a user-friendly WhatsApp bot created byDave Tech Inc \ud83c\udf8a, Meet ✦ 𝐃𝐀𝐕𝐄-𝐌𝐃 WhatsApp Bot.\n\n *Thanks for using ✦ 𝐃𝐀𝐕𝐄-𝐌𝐃 \ud83d\udea9* \n\n> follow WhatsApp Channel :- 💖\n \nhttps://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k\n\n- *YOUR PREFIX:* = ${prefix}\n\nDont forget to give star to repo ⬇️\n\nhttps://github.com/giftdee/DAVE-MD\n\n> © Powered BY ✦ 𝐃𝐀𝐕𝐄-𝐌𝐃 \ud83d\udda4`;
 
 dave.sendMessage(dave.user.id, { image: { url: `https://files.catbox.moe/nxzaly.jpg` }, caption: up })
 }
