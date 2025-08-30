@@ -45,7 +45,7 @@ async function sendMenu(dave, from, mek, sender, text, title, sendAudio = false)
 
 // Main Menu
 davlo({
-  pattern: "menu2",
+  pattern: "menu",
   desc: "Display all bot commands",
   category: "menu",
   react: "💖",
