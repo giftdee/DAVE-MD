@@ -1,3 +1,8 @@
+
+const config = require('../config');
+const moment = require('moment-timezone');
+const { davlo } = require('../davlo');
+
 davlo({
   pattern: "menu",
   alias: ["allmenu", "help"],
@@ -16,7 +21,7 @@ async (dave, mek, m, { from, sender, reply }) => {
       return `${h}h ${m}m ${s}s`;
     };
 
-    let menu = `╭──〔 *🌐 𝐃𝐀𝐕𝐄-𝐌𝐃 𝐌𝐄𝐍𝐔* 〕──╮
+    const menuText = `╭──〔 *🌐 𝐃𝐀𝐕𝐄-𝐌𝐃 𝐌𝐄𝐍𝐔* 〕──╮
 │ 👤 User: @${m.sender.split("@")[0]}
 │ ⚙️ Mode: ${config.MODE}
 │ ⏱️ Uptime: ${uptime()}
@@ -36,10 +41,8 @@ async (dave, mek, m, { from, sender, reply }) => {
 💡 Type ${config.PREFIX}categoryname to see commands`;
 
     await dave.sendMessage(from, {
-      text: menu,
-      contextInfo: {
-        mentionedJid: [m.sender]
-      }
+      text: menuText,
+      contextInfo: { mentionedJid: [m.sender] }
     }, { quoted: mek });
 
   } catch (err) {
