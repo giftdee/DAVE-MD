@@ -242,7 +242,7 @@ async (dave, mek, m, { from, quoted, body, isCmd, davlo, args, q, isGroup, sende
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363400480173280@newsletter',
-                        newsletterName: 'DAVE-MD MD 💖🦄',
+                        newsletterName: 'DAVE-MD',
                         serverMessageId: 143
                     }
                 }
